@@ -19,7 +19,7 @@ const ngrok = isDev && process.env.ENABLE_TUNNEL ? require('ngrok') : null;
 const customHost = process.env.HOST;
 const host = customHost || null;
 const prettyHost = customHost || 'localhost';
-const port = parseInt(process.env.PORT, 10) || 3000;
+const port = parseInt(process.env.PORT, 10) || 3333;
 
 const app = next({ dev: isDev });
 const handle = app.getRequestHandler();

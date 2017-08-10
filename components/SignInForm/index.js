@@ -8,7 +8,7 @@ const defaultFunction = function defFunc() {};
 
 class SignInForm extends React.Component {
   static defaultProps = {
-    createUser: defaultFunction,    
+    createUser: defaultFunction,
     signinDispatcher(token) {
       this.props.signIn(token);
     },
@@ -71,7 +71,7 @@ class SignInForm extends React.Component {
     this.props
       .signinUser(valuesPack)
       .then(response => {
-        if (response.data) {                    
+        if (response.data) {
           this.props.signinDispatcher.call(
             this,
             response.data.signinUser.token
