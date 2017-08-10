@@ -8,8 +8,10 @@ const defaultFunction = function defFunc() {};
 
 class SignInForm extends React.Component {
   static defaultProps = {
-    createUser: defaultFunction,
-    signinDispatcher: defaultFunction,
+    createUser: defaultFunction,    
+    signinDispatcher(token) {
+      this.props.signIn(token);
+    },
     signinUser: defaultFunction,
     signinUserDispatcher: defaultFunction
   };
@@ -18,6 +20,7 @@ class SignInForm extends React.Component {
     createUser: PropTypes.func,
     signinDispatcher: PropTypes.func,
     signinUser: PropTypes.func,
+    signIn: PropTypes.func.isRequired,
     signinUserDispatcher: PropTypes.func
   };
 
@@ -68,8 +71,11 @@ class SignInForm extends React.Component {
     this.props
       .signinUser(valuesPack)
       .then(response => {
-        if (response.data) {
-          this.props.signinUserDispatcher(response.data.signinUser.token);
+        if (response.data) {                    
+          this.props.signinDispatcher.call(
+            this,
+            response.data.signinUser.token
+          );
         }
       })
       .catch(err => {
